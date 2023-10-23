@@ -25,13 +25,13 @@ const Home = () => {
     <div className="App">
       <header className="App-header">
         <div className="gambar-container">
-          <img class="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none" src={bioskop} alt="image description"/>
+          <img class="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none" src={bioskop} alt=" "/>
         </div>
         <div className="Movie-container">
           {home.map((movie, i) => (
             <div className="Movie-wrapper" key={i}>
               <div className="Movie-title">{movie.title}</div>
-              <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}/>
+              <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=' '/>
               <div className="Movie-date">Release : {movie.release_date}</div>
             </div>
           ))}

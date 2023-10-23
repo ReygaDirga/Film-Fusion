@@ -19,7 +19,7 @@ const popular = () => {
         return(
             <div className="Movie-wrapper" key={i}>
                 <div className="Movie-title">{movie.title}</div>
-                <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}/>
+                <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=" "/>
                 <div className="Movie-date">Release : {movie.release_date}</div>
                 </div>
         )
