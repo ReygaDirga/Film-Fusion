@@ -1,4 +1,4 @@
-import {getUpcomingList} from "./api"
+import {getUpcomingList} from "../api/api"
 import { useEffect, useState } from 'react';
 import '../App.css';
 

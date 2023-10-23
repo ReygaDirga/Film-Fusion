@@ -1,4 +1,4 @@
-import {getTopList} from "./api"
+import {getTopList} from "../api/api"
 import { useEffect, useState } from 'react';
 import '../App.css';
 

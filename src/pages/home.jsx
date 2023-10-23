@@ -3,7 +3,7 @@ import bioskop from "../img/bioskop.jpg";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Awal = () => {
+const Home = () => {
   const [home, setHome] = useState([])
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const Awal = () => {
   )
 }
 
-export default Awal;
+export default Home;

@@ -1,11 +1,12 @@
 import ff from './img/ff.png';
 import './App.css';
 import Navbar from './component/navbar';
-import Nowplaying from './component/nowplaying';
-import Awal from './component/awal'
-import Popular from './component/popular'
-import Toprated from './component/toprated'
-import Upcoming from './component/upcoming'
+import Nowplaying from './pages/nowplaying';
+import Popular from './pages/popular';
+import Toprated from './pages/toprated';
+import Upcoming from './pages/upcoming';
+import Home from './pages/home';
+
 import Footer from './component/footer';
 import Notfound from './component/notfound'
 import { Helmet } from 'react-helmet';
@@ -24,7 +25,7 @@ function App() {
     <Router>
       <Navbar/>
         <Routes>
-          <Route path='/' element={<Awal/>}/>
+          <Route path='/' element={<Home/>}/>
           <Route path='/nowplaying' element={<Nowplaying/>}/>
           <Route path='/popular' element={<Popular/>}/>
           <Route path='/toprated' element={<Toprated/>}/>

@@ -1,4 +1,4 @@
-import {getMovieList} from "./api"
+import {getMovieList} from "../api/api"
 import { useEffect, useState } from 'react';
 import '../App.css';
 

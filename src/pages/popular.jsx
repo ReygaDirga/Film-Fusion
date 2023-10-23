@@ -1,4 +1,4 @@
-import {getPopularList} from "./api"
+import {getPopularList} from "../api/api"
 import { useEffect, useState } from 'react';
 import '../App.css';
 
