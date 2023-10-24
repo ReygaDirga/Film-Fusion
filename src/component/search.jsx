@@ -1,14 +1,13 @@
 import { useState } from "react"
 
-
-
 const Search = () => {
 
     const [searchV, setSearchV] = useState('')
 
     const handleInput = (e) => {
-        setSearchV(e.target.value)
-        alert(setSearchV(e.target.value))
+        const value = e.target.value
+        setSearchV(value)
+        console.log(value)
     }
     return (
         <>

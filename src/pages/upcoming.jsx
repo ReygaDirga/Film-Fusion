@@ -22,12 +22,14 @@ const Upcoming = () => {
     }
   };
 
+  const sortedUpcoming = [...Upcoming].sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+
   return (
     <>
       <div className="App">
         <div className="App-header">
           <div className="Movie-container">
-            {Upcoming.map((movie, i) => (
+            {sortedUpcoming.map((movie, i) => (
               <div className="Movie-wrapper" key={i}>
                 <div className="Movie-title">{movie.title}</div>
                 <img

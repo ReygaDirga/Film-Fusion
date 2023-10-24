@@ -2,12 +2,10 @@ import {getTopList} from "../api/api"
 import { useEffect, useState } from 'react';
 import '../App.css';
 
-const toprated = () => {
+const Toprated = () => {
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [topRated, setTopRated] = useState([])
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         getTopList().then((result) => {
         setTopRated(result)
@@ -36,4 +34,4 @@ const toprated = () => {
     </div>
     )
 }
-export default toprated;
+export default Toprated;
