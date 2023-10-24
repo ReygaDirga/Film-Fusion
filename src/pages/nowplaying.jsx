@@ -1,38 +1,47 @@
-import {getMovieList} from "../api/api"
-import { useEffect, useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
 import '../App.css';
 
-const nowplaying = ({ inputValue }) =>{
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Nowplaying = () => {
+
   const [nowPlaying, setNowPlaying] = useState([])
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    getMovieList().then((result) => {
-      setNowPlaying(result)
-    })
+  useEffect(() =>{
+    getNowPlaying()
   }, [])
 
-  const NowPlayingMovieList =  () => {
-    return nowPlaying.map((movie, i) => {
-      return(
-          <div className="Movie-wrapper" key={i}>
-              <div className="Movie-title">{movie.title}</div>
-              <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=" "/>
-              <div className="Movie-date">Release : {movie.release_date}</div>
-            </div>
-      )
-    })
+  const getNowPlaying = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASEURL}/movie/popular?now_playing=2&api_key=${process.env.REACT_APP_APIKEY}`
+      );
+      const data = response.data.results;
+      setNowPlaying(data);
+    } catch (error) {
+      console.log("API NOT CALLED");
+    }
   }
 
-    return(
+  return (
+    <>
     <div className="App">
-      <header className="App-header">
+        <div className="App-header">
           <div className="Movie-container">
-              <NowPlayingMovieList/>
+            {nowPlaying.map((movie, i) => (
+              <div className="Movie-wrapper" key={i}>
+                <div className="Movie-title">{movie.title}</div>
+                <img
+                  className="Movie-image"
+                  src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
+                  alt=" "
+                />
+                <div className="Movie-date">Release : {movie.release_date}</div>
+              </div>
+            ))}
           </div>
-      </header>
-    </div>
-    )
+        </div>
+      </div>
+    </>
+  )
 }
-export default nowplaying;
+export default Nowplaying

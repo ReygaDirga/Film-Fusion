@@ -1,39 +1,47 @@
-import {getPopularList} from "../api/api"
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import '../App.css';
+import axios from "axios";
 
-const popular = () => {
+const Popular = () => {
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [popularMovie, setPopular] = useState([])
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        getPopularList().then((result) => {
-        setPopular(result)
-        })
+        getPopular()
     }, [])
 
-    const PopularMovieList = () => {
-        return popularMovie.map((movie, i) => {
-        return(
-            <div className="Movie-wrapper" key={i}>
-                <div className="Movie-title">{movie.title}</div>
-                <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=" "/>
-                <div className="Movie-date">Release : {movie.release_date}</div>
-                </div>
-        )
-        })
+    const getPopular = async () => {
+        try {
+            const response = await axios.get(
+              `${process.env.REACT_APP_BASEURL}/movie/popular?page=2&api_key=${process.env.REACT_APP_APIKEY}`
+            );
+            const data = response.data.results;
+            setPopular(data);
+          } catch (error) {
+            console.log("API NOT CALLED");
+          }
     }
 
     return(
-    <div className="App">
-    <header className="App-header">
-        <div className="Movie-container">
-            <PopularMovieList/>
+        <>
+        <div className="App">
+        <div className="App-header">
+          <div className="Movie-container">
+            {popularMovie.map((movie, i) => (
+              <div className="Movie-wrapper" key={i}>
+                <div className="Movie-title">{movie.title}</div>
+                <img
+                  className="Movie-image"
+                  src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
+                  alt=" "
+                />
+                <div className="Movie-date">Release : {movie.release_date}</div>
+              </div>
+            ))}
+          </div>
         </div>
-    </header>
-    </div>
+      </div>
+        </>
     )
 }
-export default popular;
+export default Popular

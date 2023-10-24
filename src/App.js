@@ -6,7 +6,7 @@ import Popular from './pages/popular';
 import Toprated from './pages/toprated';
 import Upcoming from './pages/upcoming';
 import Home from './pages/home';
-
+import Detail from './pages/detail';
 import Footer from './component/footer';
 import Notfound from './component/notfound'
 import { Helmet } from 'react-helmet';
@@ -30,6 +30,7 @@ function App() {
           <Route path='/popular' element={<Popular/>}/>
           <Route path='/toprated' element={<Toprated/>}/>
           <Route path='/upcoming' element={<Upcoming/>}/>
+          <Route path='/detail/:id' element={<Detail/>}/>
           <Route path='*' element={<Notfound/>}/>
         </Routes>
       </Router>
