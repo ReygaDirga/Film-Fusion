@@ -1,10 +1,11 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 const Upcoming = () => {
   const [Upcoming, setUpcoming] = useState([]);
+  const napigasi = useNavigate();
 
   useEffect(() => {
     getComing();
@@ -22,6 +23,10 @@ const Upcoming = () => {
     }
   };
 
+  const senkir = (movieId) => {
+    napigasi(`/detail/${movieId}`)
+  }
+
   const sortedComing = [...Upcoming].sort((a,b)=> new Date(b.release_date) - new Date(a.release_date))
 
   return (
@@ -30,7 +35,7 @@ const Upcoming = () => {
         <div className="App-header">
           <div className="Movie-container">
             {sortedComing.map((movie, i) => (
-              <div className="Movie-wrapper" key={i}>
+              <div className="Movie-wrapper" key={i} onClick={() => senkir(movie.id)}>
                 <div className="Movie-title">{movie.title}</div>
                 <img
                   className="Movie-image"

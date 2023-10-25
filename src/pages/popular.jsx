@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import '../App.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Popular = () => {
 
     const [popularMovie, setPopular] = useState([])
+    const navigasi = useNavigate()
 
     useEffect(() => {
         getPopular()
@@ -22,13 +24,17 @@ const Popular = () => {
           }
     }
 
+    const kirimkan = (movieId) => {
+      navigasi(`/detail/${movieId}`)
+    }
+
     return(
         <>
         <div className="App">
         <div className="App-header">
           <div className="Movie-container">
             {popularMovie.map((movie, i) => (
-              <div className="Movie-wrapper" key={i}>
+              <div className="Movie-wrapper" key={i} onClick={() => kirimkan(movie.id)}>
                 <div className="Movie-title">{movie.title}</div>
                 <img
                   className="Movie-image"

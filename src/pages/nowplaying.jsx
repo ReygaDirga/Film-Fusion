@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import '../App.css';
+import { useNavigate } from "react-router-dom";
 
 const Nowplaying = () => {
 
   const [nowPlaying, setNowPlaying] = useState([])
+  const navigate = useNavigate();
 
   useEffect(() =>{
     getNowPlaying()
@@ -22,13 +24,17 @@ const Nowplaying = () => {
     }
   }
 
+  const send = (movieId) => {
+    navigate(`/detail/${movieId}`)
+  }
+
   return (
     <>
     <div className="App">
         <div className="App-header">
           <div className="Movie-container">
             {nowPlaying.map((movie, i) => (
-              <div className="Movie-wrapper" key={i}>
+              <div className="Movie-wrapper" key={i} onClick={() => send(movie.id)}>
                 <div className="Movie-title">{movie.title}</div>
                 <img
                   className="Movie-image"

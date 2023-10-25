@@ -3,10 +3,10 @@ import bioskop from "../img/bioskop.jpg";
 import { useEffect, useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Carousel from '../component/carousel';
 
 const Home = () => {
   const [home, setHome] = useState([])
-  const [sher, setId] = useState([])
   const naviagte = useNavigate();
 
   useEffect(() => {
@@ -25,17 +25,14 @@ const Home = () => {
   }
 
   const kirim = (movieId) =>{
-    setId(movieId)
-    naviagte(`/detail/${sher}`)
-
-    // alert(movieId)
-    // console.log(movieId)
+    naviagte(`/detail/${movieId}`)
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <div className="gambar-container">
+          {/* <Carousel/> */}
           <img class="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none" src={bioskop} alt=" "/>
         </div>
         <div className="Movie-container" >

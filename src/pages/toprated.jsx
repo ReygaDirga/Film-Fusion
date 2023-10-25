@@ -1,10 +1,12 @@
 import '../App.css';
 import {useEffect, useState} from "react"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Toprated = () => {
 
     const [topRated, setTopRated] = useState([])
+    const napiget = useNavigate();
     
     useEffect(()=>{
         getTop();
@@ -22,13 +24,17 @@ const Toprated = () => {
         }
       };
 
+    const sending = (movieId) => {
+      napiget(`/detail/${movieId}`)
+    }
+
     return(
 <>
       <div className="App">
         <div className="App-header">
           <div className="Movie-container">
             {topRated.map((movie, i) => (
-              <div className="Movie-wrapper" key={i}>
+              <div className="Movie-wrapper" key={i} onClick={() => sending(movie.id)}>
                 <div className="Movie-title">{movie.title}</div>
                 <img
                   className="Movie-image"
