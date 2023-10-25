@@ -2,10 +2,12 @@ import '../App.css';
 import bioskop from "../img/bioskop.jpg";
 import { useEffect, useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [home, setHome] = useState([])
   const [sher, setId] = useState([])
+  const naviagte = useNavigate();
 
   useEffect(() => {
     getHome()
@@ -24,12 +26,10 @@ const Home = () => {
 
   const kirim = (movieId) =>{
     setId(movieId)
-    Navigate();
+    naviagte(`/detail/${sher}`)
+
     // alert(movieId)
     // console.log(movieId)
-  }
-  const Navigate = () =>{
-    console.log(`Navigasi ke halaman detail dengan ID: ${sher}`)
   }
 
   return (
@@ -38,11 +38,11 @@ const Home = () => {
         <div className="gambar-container">
           <img class="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none" src={bioskop} alt=" "/>
         </div>
-        <div className="Movie-container">
+        <div className="Movie-container" >
           {home.map((movie, i) => (
-            <div className="Movie-wrapper" key={i}>
+            <div className="Movie-wrapper" onClick={() => kirim(movie.id)} key={i}>
               <div className="Movie-title">{movie.title}</div>
-              <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=' ' onClick={() => kirim(movie.id)}/>
+              <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=' '/>
               <div className="Movie-date">Release : {movie.release_date}</div>
             </div>
           ))}
