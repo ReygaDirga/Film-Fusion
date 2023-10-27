@@ -37,7 +37,9 @@ const Upcoming = () => {
     napigasi(`/detail/${movieId}`)
   }
 
-  const sortedComing = [...Upcoming].sort((a,b)=> new Date(b.release_date) - new Date(a.release_date))
+  const sortedComing = [...Upcoming]
+  .filter(movie => new Date(movie.release_date).getFullYear() >= 2023)
+  .sort((a,b)=> new Date(b.release_date) - new Date(a.release_date))
 
   return (
     <>

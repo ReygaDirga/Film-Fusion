@@ -8,6 +8,8 @@ const Detail = () => {
   const [dataf, setDataf] = useState([]);
   const { id } = useParams();
   const math = Math.ceil(dataf.vote_average);
+  const today = new Date()
+  const status = dataf.release_date && new Date(dataf.release_date) > today ? 'Upcoming' : dataf.status;
 
   useEffect(() => {
     getDetail();
@@ -33,7 +35,7 @@ const Detail = () => {
           <div className="Movie-container">
             <div class="Movie" key={dataf.id}>
               <div class="bg-white rounded-md bg-gray-800 shadow-lg">
-                <div class="md:flex px-4 leading-none max-w-4xl bg-gray-800">
+                <div class="md:flex px-4 leading-none max-w-5xl bg-gray-800">
                   <div class="flex-none ">
                     {dataf.poster_path ? (
                       <img
@@ -76,7 +78,7 @@ const Detail = () => {
                         </>
                       )}
                       <span class="font-bold px-2">|</span>
-                      Status: {dataf.status}
+                       Status : {status}
                     </p>
 
                     <div class="text-xs">
