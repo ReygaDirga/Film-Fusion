@@ -59,11 +59,15 @@ const Detail = () => {
                       <span class="font-bold px-2">|</span>
                       language: {dataf.original_language}
                     </p>
-
-                    <p class="hidden md:block px-4 my-4 text-sm text-left">
-                      {dataf.overview}
-                    </p>
-
+                      {dataf.overview ? (
+                        <p class="hidden md:block px-4 my-4 text-sm text-left">
+                        {dataf.overview}
+                      </p>
+                      ) : (
+                        <p class="hidden md:block px-4 my-4 text-sm text-left">
+                        We apologize this film summary has no data available at this time. Information related to the summary may not be available or not entered in the database. You can try back later or look for more information about this film in other resources if available.
+                      </p>
+                      )}
                     <p class="flex text-md px-4 my-2">
                       Rating: {math}/10
                       {dataf.release_date ? (

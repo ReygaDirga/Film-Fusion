@@ -16,7 +16,7 @@ const Upcoming = () => {
   const getComing = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASEURL}/movie/upcoming?page=2&api_key=${process.env.REACT_APP_APIKEY}`
+        `${process.env.REACT_APP_BASEURL}/movie/upcoming?page=20&api_key=${process.env.REACT_APP_APIKEY}`
       );
       const data = response.data.results;
       setUpcoming(data);
