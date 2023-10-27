@@ -2,6 +2,7 @@ import "../App.css";
 import "../desain.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import poster from "../img/poster.jpg"
 import axios from "axios";
 const Detail = () => {
   const [dataf, setDataf] = useState([]);
@@ -32,13 +33,21 @@ const Detail = () => {
           <div className="Movie-container">
             <div class="Movie" key={dataf.id}>
               <div class="bg-white rounded-md bg-gray-800 shadow-lg">
-                <div class="md:flex px-4 leading-none max-w-4xl">
+                <div class="md:flex px-4 leading-none max-w-4xl bg-gray-800">
                   <div class="flex-none ">
-                    <img
+                    {dataf.poster_path ? (
+                      <img
                       src={`${process.env.REACT_APP_BASEIMG}/${dataf.poster_path}`}
                       alt="pic"
                       class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
                     />
+                    ) : (
+                      <img
+                      src={poster}
+                      alt="pic"
+                      class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
+                    />
+                    )}
                   </div>
                   <div class="flex-col text-gray-300">
                     <p class="pt-4 text-2xl font-bold">{dataf.title}</p>
@@ -55,8 +64,17 @@ const Detail = () => {
 
                     <p class="flex text-md px-4 my-2">
                       Rating: {math}/10
-                      <span class="font-bold px-2">|</span>
-                      Release: {dataf.release_date}
+                      {dataf.release_date ? (
+                        <>
+                        <span class="font-bold px-2">|</span>
+                        <p>Release</p>: {dataf.release_date}
+                        </>
+                      ): (
+                        <>
+                        <span class="font-bold px-2">|</span>
+                        <p>Release</p>: unknown
+                        </>
+                      )}
                       <span class="font-bold px-2">|</span>
                       Status: {dataf.status}
                     </p>

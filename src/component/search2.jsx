@@ -1,4 +1,3 @@
-import { useRef } from "react"
 const search2 = () => {
 
     return (

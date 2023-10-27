@@ -5,6 +5,9 @@ body {
   text-align: center;
 }
 
+.Movie{
+  background-color: red;
+}
 .hr-text {
   line-height: 1em;
   position: relative;

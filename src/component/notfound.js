@@ -8,7 +8,7 @@ const Notfound = () => {
             Page Not Found
         </div>
         <button class="mt-5">
-          <a
+          <a href='/'
             class="relative inline-block text-sm font-medium text-blue-700 group active:text-blue-500 focus:outline-none focus:ring"
           >
             <span
