@@ -4,8 +4,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import poster from "../img/poster.jpg"
 import axios from "axios";
+import YouTube from "react-youtube";
+
 const Detail = () => {
   const [dataf, setDataf] = useState([]);
+  const [videos, setVideos] = useState([])
+  const [showTrailer, setShowTrailer] = useState(false);
+
   const { id } = useParams();
   const math = Math.ceil(dataf.vote_average);
   const today = new Date()
@@ -13,6 +18,7 @@ const Detail = () => {
 
   useEffect(() => {
     getDetail();
+    getVideo();
   }, [id]);
 
   const getDetail = async () => {
@@ -27,6 +33,31 @@ const Detail = () => {
       console.log(error);
     }
   };
+
+  const getVideo = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=62013f8d2955d920db1bb2fca0d27481`
+      );
+      const datav = response.data;
+      setVideos(datav);
+      console.log(datav);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const setting = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1,
+    },
+  }
+
+  const play = () => {
+    setShowTrailer(true);
+  }
 
   return (
     <>
@@ -85,13 +116,21 @@ const Detail = () => {
                        Status : {status}
                     </p>
 
-                    <div class="text-xs">
-                      <button
-                        type="button"
-                        class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
-                      >
-                        TRAILER
-                      </button>
+                    <div className="text-xs">
+                      {showTrailer ? (
+                        <YouTube
+                          videoId={videos.results[0].key}
+                          opts={setting}
+                        />
+                      ) : (
+                        <button
+                          onClick={play}
+                          type="button"
+                          className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+                        >
+                          TRAILER
+                        </button>
+                      )}
 
                       <a
                         href={`https://www.imdb.com/title/${dataf.imdb_id}`}
