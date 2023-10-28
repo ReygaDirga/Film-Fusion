@@ -1,8 +1,14 @@
 import { useState } from "react"
 
-
-
 const Search = () => {
+
+    const [searchV, setSearchV] = useState('')
+
+    const handleInput = (e) => {
+        const value = e.target.value
+        setSearchV(value)
+        console.log(value)
+    }
     return (
         <>
         <div className="flex md:order-2">

@@ -6,6 +6,7 @@ import Popular from './pages/popular';
 import Toprated from './pages/toprated';
 import Upcoming from './pages/upcoming';
 import Home from './pages/home';
+
 import Detail from './pages/detail';
 import Footer from './component/footer';
 import Notfound from './component/notfound'

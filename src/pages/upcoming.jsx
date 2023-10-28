@@ -26,10 +26,10 @@ const Upcoming = () => {
   };
 
   const serup = async (q) => {
-    if(q.length > 3) {
+    if (q.length > 3) {
       const query = await searchMovie(q)
       setUpcoming(query.results)
-      console.log({query :query})
+      console.log({ query: query })
     }
   }
 
@@ -38,23 +38,24 @@ const Upcoming = () => {
   }
 
   const sortedComing = [...Upcoming]
-  .filter(movie => new Date(movie.release_date).getFullYear() >= 2023)
-  .sort((a,b)=> new Date(b.release_date) - new Date(a.release_date))
+    .filter(movie => new Date(movie.release_date).getFullYear() >= 2023)
+    .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
+  const sortedUpcoming = [...Upcoming].sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
 
   return (
     <>
       <div className="App">
-        <div className="App-header">
+      <div className="App-header">
         <div className="search-container">
-          <div className="pt-2 relative mx-auto text-gray-600">  
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <div className="pt-2 relative mx-auto text-gray-600">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
+              </div>
+              <input onChange={({ target }) => serup(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required />
             </div>
-            <input onChange={({target}) => serup(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required/>
-        </div>
           </div>
         </div>
           <div className="Movie-container">
@@ -63,16 +64,16 @@ const Upcoming = () => {
                 <div className="Movie-title">{movie.title}</div>
                 {movie.poster_path ? (
                   <img
-                  className="Movie-image"
-                  src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
-                  alt=" "
-                />
+                    className="Movie-image"
+                    src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
+                    alt=" "
+                  />
                 ) : (
                   <img
-                  className="Movie-image"
-                  src={poster}
-                  alt=" "
-                />
+                    className="Movie-image"
+                    src={poster}
+                    alt=" "
+                  />
                 )}
                 {movie.release_date ? (
                   <div className="Movie-date">Release : {movie.release_date}</div>
@@ -85,7 +86,6 @@ const Upcoming = () => {
         </div>
       </div>
     </>
-  );
-};
-
+  )
+}
 export default Upcoming;

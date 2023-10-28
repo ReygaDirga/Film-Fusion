@@ -8,12 +8,20 @@ import poster from "../img/poster.jpg"
 const Toprated = () => {
 
     const [topRated, setTopRated] = useState([])
+
     const napiget = useNavigate();
     
     useEffect(()=>{
         getTop();
-    }, [])
 
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        
+        
+        })
+    }, [])
+    
     const getTop = async () => {
         try {
           const response = await axios.get(
@@ -84,43 +92,5 @@ const Toprated = () => {
     </>
     )
 }
-export default Toprated;
-
-
-
-
-// const toprated = () => {
-
-//     // eslint-disable-next-line react-hooks/rules-of-hooks
-//     const [topRated, setTopRated] = useState([])
-
-//     // eslint-disable-next-line react-hooks/rules-of-hooks
-//     useEffect(() => {
-//         getTopList().then((result) => {
-//         setTopRated(result)
-//         })
-//     }, [])
-
-//     const TopRatedMovieList = () => {
-//         return topRated.map((movie, i) => {
-//         return(
-//             <div className="Movie-wrapper" key={i}>
-//                 <div className="Movie-title">{movie.title}</div>
-//                 <img className="Movie-image" src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`} alt=""/>
-//                 <div className="Movie-date">Release : {movie.release_date}</div>
-//                 </div>
-//         )
-//         })
-//     }
-
-//     return(
-//     <div className="App">
-//       <header className="App-header">
-//           <div className="Movie-container">
-//               <TopRatedMovieList/>
-//           </div>
-//       </header>
-//     </div>
-//     )
-// }
-// export default toprated;
+    
+export default Toprated
