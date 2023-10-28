@@ -49,11 +49,16 @@ const Detail = () => {
 
   const setting = {
     height: '390',
-    width: '640',
+    width: '100%',
+    alignItems: 'center',
     playerVars: {
       autoplay: 1,
     },
   }
+
+  const closeVideo = () => {
+    setShowTrailer(false);
+  };
 
   const play = () => {
     setShowTrailer(true);
@@ -117,11 +122,20 @@ const Detail = () => {
                     </p>
 
                     <div className="text-xs">
-                      {showTrailer ? (
-                        <YouTube
-                          videoId={videos.results[0].key}
-                          opts={setting}
-                        />
+                    {showTrailer ? (
+                        <>
+                          <YouTube
+                            videoId={videos.results[0].key}
+                            opts={setting}
+                          />
+                          <button
+                          onClick={closeVideo}
+                          type="button"
+                          className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+                        >
+                          CLOSE TRAILER
+                        </button>
+                        </>
                       ) : (
                         <button
                           onClick={play}

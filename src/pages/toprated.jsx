@@ -13,13 +13,6 @@ const Toprated = () => {
     
     useEffect(()=>{
         getTop();
-
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-        
-        
-        })
     }, [])
     
     const getTop = async () => {
@@ -35,7 +28,7 @@ const Toprated = () => {
       };
 
     const sertop = async (q) => {
-      if(q.length > 3){
+      if(q.length >= 3){
         const query = await searchMovie(q)
         setTopRated(query.results)
         console.log({query :query})

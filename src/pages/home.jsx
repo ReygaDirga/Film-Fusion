@@ -26,7 +26,7 @@ const Home = () => {
   }
 
   const search = async (q) => {
-    if(q.length > 3){
+    if(q.length >= 3){
       const query = await searchMovie(q)
       setHome(query.results)
       console.log({query :query})

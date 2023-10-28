@@ -26,7 +26,7 @@ const Upcoming = () => {
   };
 
   const serup = async (q) => {
-    if (q.length > 3) {
+    if (q.length >= 3) {
       const query = await searchMovie(q)
       setUpcoming(query.results)
       console.log({ query: query })

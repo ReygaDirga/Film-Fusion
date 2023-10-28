@@ -27,7 +27,7 @@ const Nowplaying = () => {
   }
 
   const cari = async (q) =>{
-    if(q.length > 3){
+    if(q.length >= 3){
       const query = await searchMovie(q)
       setNowPlaying(query.results)
       console.log({query :query})
