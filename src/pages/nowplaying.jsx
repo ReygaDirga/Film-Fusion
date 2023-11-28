@@ -6,7 +6,7 @@ import { searchMovie } from "../api/api";
 import poster from "../img/poster.jpg"
 
 const Nowplaying = () => {
-
+  const [renow, setRenow] = useState([])
   const [nowPlaying, setNowPlaying] = useState([])
   const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ const Nowplaying = () => {
         `${process.env.REACT_APP_BASEURL}/movie/popular?now_playing=2&api_key=${process.env.REACT_APP_APIKEY}`
       );
       const data = response.data.results;
+      setRenow(data)
       setNowPlaying(data);
     } catch (error) {
       console.log("API NOT CALLED");
@@ -30,7 +31,8 @@ const Nowplaying = () => {
     if(q.length >= 3){
       const query = await searchMovie(q)
       setNowPlaying(query.results)
-      console.log({query :query})
+    } else {
+      setNowPlaying(renow)
     }
   }
 
@@ -50,35 +52,39 @@ const Nowplaying = () => {
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
             </div>
-            <input onChange={({target}) => cari(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required/>
+            <input style={{ backgroundColor : "#282c34", color : "white" }} onChange={({target}) => cari(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required/>
         </div>
           </div>
         </div>
-          <div className="Movie-container">
-            {nowPlaying.map((movie, i) => (
-              <div className="Movie-wrapper" key={i} onClick={() => send(movie.id)}>
-                <div className="Movie-title">{movie.title}</div>
-                {movie.poster_path ? (
-                  <img
-                    className="Movie-image"
-                    src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
-                    alt=" "
-                  />
-                ) : (
-                  <img
-                    className="Movie-image"
-                    src={poster}
-                    alt=" "
-                  />
-                )}
+        <div className="Movie-container">
+            {nowPlaying && nowPlaying.length > 0 ? (
+              nowPlaying.map((movie, i) => (
+                <div className="Movie-wrapper" key={i} onClick={() => send(movie.id)}>
+                  <div className="Movie-title">{movie.title}</div>
+                  {movie.poster_path ? (
+                    <img
+                      className="Movie-image"
+                      src={`${process.env.REACT_APP_BASEIMG}/${movie.poster_path}`}
+                      alt=" "
+                    />
+                  ) : (
+                    <img
+                      className="Movie-image"
+                      src={poster}
+                      alt=" "
+                    />
+                  )}
 
-                {movie.release_date ? (
-                  <div className="Movie-date">Release : {movie.release_date}</div>
-                ) : (
-                  <div className="Movie-date">Release : unknown</div>
-                )}
-              </div>
-            ))}
+                  {movie.release_date ? (
+                    <div className="Movie-date">Release : {movie.release_date}</div>
+                  ) : (
+                    <div className="Movie-date">Release : unknown</div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="No-data-message">Maaf Pencarian Anda Tidak Ditemukan</div>
+            )}
           </div>
         </div>
       </div>

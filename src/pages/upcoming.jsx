@@ -6,6 +6,7 @@ import { searchMovie } from "../api/api";
 import poster from "../img/poster.jpg"
 
 const Upcoming = () => {
+  const [reup, setReup] = useState({})
   const [Upcoming, setUpcoming] = useState([]);
   const napigasi = useNavigate();
 
@@ -19,6 +20,7 @@ const Upcoming = () => {
         `${process.env.REACT_APP_BASEURL}/movie/upcoming?page=20&api_key=${process.env.REACT_APP_APIKEY}`
       );
       const data = response.data.results;
+      setReup(data);
       setUpcoming(data);
     } catch (error) {
       console.log("API NOT CALLED");
@@ -29,7 +31,8 @@ const Upcoming = () => {
     if (q.length >= 3) {
       const query = await searchMovie(q)
       setUpcoming(query.results)
-      console.log({ query: query })
+    } else {
+      setUpcoming(reup)
     }
   }
 
@@ -53,12 +56,13 @@ const Upcoming = () => {
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
               </div>
-              <input onChange={({ target }) => serup(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required />
+              <input style={{ backgroundColor : "#282c34", color : "white" }} onChange={({ target }) => serup(target.value)} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Film" required />
             </div>
           </div>
         </div>
           <div className="Movie-container">
-            {sortedComing.map((movie, i) => (
+          {sortedComing && sortedComing.length > 0 ? (
+            sortedComing.map((movie, i) => (
               <div className="Movie-wrapper" key={i} onClick={() => senkir(movie.id)}>
                 <div className="Movie-title">{movie.title}</div>
                 {movie.poster_path ? (
@@ -80,7 +84,10 @@ const Upcoming = () => {
                   <div className="Movie-date">Release : unknown</div>
                 )}
               </div>
-            ))}
+            ))
+          ) : (
+            <div className="No-data-message">Maaf Pencarian Anda Tidak Ditemukan</div>
+          )}
           </div>
         </div>
       </div>
