@@ -7,7 +7,6 @@ const Search2 = () => {
         const value = e.target.value
         setSearch(value)
     }
-
     return (
         <div className="relative mt-3 md:hidden">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

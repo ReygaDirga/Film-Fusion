@@ -24,7 +24,7 @@ export const getTopList = async() => {
 }
 
 export const getUpcomingList = async() => {
-   const upcoming = await axios.get(`${baseUrl}/movie/upcoming?page=2&api_key=${apiKey}`)
+   const upcoming = await axios.get(`${baseUrl}/movie/upcoming?page=1&api_key=${apiKey}`)
    return upcoming.data.results
 }
 

@@ -17,12 +17,19 @@
   color: #075275;
 }
 
-.gambar-container{
-  margin-top: 60px;
+
+.search{
+  width: 99%;
+  margin-top: 20px;
+}
+
+.search-container{
+  width: 80%;
+  margin-top: 70px;
 }
 
 .Movie-container{
-  margin-top: 50px;
+  margin-top: 30px;
   width : 100%;
   display: flex;
   flex-wrap: wrap;
@@ -48,8 +55,8 @@
 }
 
 .Movie-title{
-  height: 40px;
-  margin-top: 26px;
+  height: 67px;
+  margin-top: 30px;
   font-weight: bold;
 }
 
@@ -64,4 +71,8 @@
   font-weight: bold;
   font-size: 1.2em;
   text-decoration: underline;
+}
+
+.gambar-container{
+  margin-top: 50px;
 }
